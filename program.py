@@ -4,21 +4,36 @@ import const
 
 menu = True;
 while(menu):
-    
     print("");
-    print("Escolha o tipo de calculo:");
-    print("1 - Área do triângulo.");
-    print("2 - Área do quadrado.");
-    print("3 - Área do trapézio.");
-    print("4 - Área do círculo.");
-    print("5 - Circunferencia.");
+    print("Escolha entre: ");
+    print("1 - cm");
+    print("2 - m");
+    print("");
+    padrao = int(input("Opção: "));
+    if padrao == 1:
+        medida = "cm";
+    elif padrao == 2:
+        medida = "m";
+    else:
+        print("Inválido! ");
+
+    print("");
+    print("##############################");
+    print("# Escolha o tipo de calculo: #");
+    print("# 1 - Área do triângulo.     #");
+    print("# 2 - Área do quadrado.      #");
+    print("# 3 - Área do trapézio.      #");
+    print("# 4 - Área do círculo.       #");
+    print("# 5 - Área retângulo.        #");
+    print("# 6 - Área losango.          #");
+    print("# 7 - Circunferência.        #");
+    print("##############################");
     print("");
     
     x = int(input("Digite a opção: "));
     print("");
     
     if x == 1:
-        
         print("Área do triângulo");
         print("");
         print("Digite os valores abaixo: ");
@@ -54,10 +69,9 @@ while(menu):
         calculo = valorFloat_B * valorFloat_A / 2;
         resultado = str(calculo);
         resultadoConvertido = resultado.replace(".", ",");
-        print("Área resultante: ", resultadoConvertido);
+        print("Área resultante: ", resultadoConvertido, medida, "²");
     
     elif x == 2:
-        
         print("Área do quadrado");
         print("");
         print("Digite o valor abaixo:");
@@ -80,10 +94,9 @@ while(menu):
         calculo = valorFloat_LQ ** 2;
         resultado = str(calculo);
         resultadoConvertido = resultado.replace(".", ",");
-        print("Área resultante: ", resultadoConvertido);
+        print("Área resultante: ", resultadoConvertido,  medida, "²");
 
     elif x == 3:
-
         print("Área Trapézio");
         print("");
         print("Digite os valores abaixo:");
@@ -132,10 +145,9 @@ while(menu):
         calculo = (valorFloat_Bm + valorFloat_BM) * valorFloat_At / 2;
         resultado = str(calculo);
         resultadoConvertido = resultado.replace(".",",");
-        print("Área resultante: ", resultadoConvertido);
+        print("Área resultante: ", resultadoConvertido, medida, "²");
 
     elif x == 4:
-
         print("Área do círculo");
         print("");
         print("Escolha o método: ");
@@ -167,7 +179,7 @@ while(menu):
             resultado = str(calculo);
             resultadoConvertido= resultado.replace(".", ",");
 
-            print("Área do círculo: ", resultadoConvertido);
+            print("Área do círculo: ", resultadoConvertido, medida, "²");
         
         elif x == 2:
             print("Digite o valor abaixo:");
@@ -190,13 +202,19 @@ while(menu):
             resultado = str(calculo);
             resultadoConvertido = resultado.replace(".", ",");
 
-            print("Área do círculo: ", resultadoConvertido);
+            print("Área do círculo: ", resultadoConvertido, medida, "²");
         else:
             print("Inválido");
             print("");
     
     elif x == 5:
+        print("Área do retângulo: ", resultadoConvertido, medida, "²");
 
+    elif x == 6:
+        print("Área do losango: ", resultadoConvertido, medida, "²");
+
+
+    elif x == 7:
         print("Circunferência");
         print("");
         print("Escolha o metodo: ");
@@ -227,7 +245,7 @@ while(menu):
             calculo = const.PI * ValorDiametro;
             resultado = str(calculo);
             resultadoConvertido = resultado.replace(".", ",");
-            print("Circunferência: ", resultadoConvertido);
+            print("Circunferência: ", resultadoConvertido, medida);
         
         elif x == 2:
             print("Digite o valor abaixo:");
@@ -249,7 +267,7 @@ while(menu):
             calculo = 2 * const.PI * ValorRaio;
             resultado = str(calculo);
             resultadoConvertido = resultado.replace(".",",");
-            print("Circunferência: ", resultadoConvertido);
+            print("Circunferência: ", resultadoConvertido, medida);
         else:
             print("Inválido");
     else:
@@ -260,6 +278,7 @@ while(menu):
     retorno = True;
 
     while(retorno):
+        print("");
         print("Deseja realizar outra operação?");
         print("S");
         print("N");
