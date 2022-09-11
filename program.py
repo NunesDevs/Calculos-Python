@@ -2,8 +2,7 @@ from curses.ascii import isalpha, isdigit
 from unicodedata import digit
 import const
 
-menu = True;
-while(menu):
+while(True):
     print("");
     print("Escolha entre: ");
     print("1 - cm");
@@ -15,8 +14,8 @@ while(menu):
     elif padrao == 2:
         medida = "m";
     else:
-        print("Inválido! ");
 
+        print("Inválido! ");
     print("");
     print("##############################");
     print("# Escolha o tipo de calculo: #");
@@ -69,7 +68,7 @@ while(menu):
         calculo = valorFloat_B * valorFloat_A / 2;
         resultado = str(calculo);
         resultadoConvertido = resultado.replace(".", ",");
-        print("Área resultante: ", resultadoConvertido, medida, "²");
+        print("Área resultante: ", resultadoConvertido, medida,"2");
     
     elif x == 2:
         print("Área do quadrado");
@@ -94,7 +93,7 @@ while(menu):
         calculo = valorFloat_LQ ** 2;
         resultado = str(calculo);
         resultadoConvertido = resultado.replace(".", ",");
-        print("Área resultante: ", resultadoConvertido,  medida, "²");
+        print("Área resultante: ", resultadoConvertido, medida,"2");
 
     elif x == 3:
         print("Área Trapézio");
@@ -145,7 +144,7 @@ while(menu):
         calculo = (valorFloat_Bm + valorFloat_BM) * valorFloat_At / 2;
         resultado = str(calculo);
         resultadoConvertido = resultado.replace(".",",");
-        print("Área resultante: ", resultadoConvertido, medida, "²");
+        print("Área resultante: ", resultadoConvertido, medida,"2");
 
     elif x == 4:
         print("Área do círculo");
@@ -179,7 +178,7 @@ while(menu):
             resultado = str(calculo);
             resultadoConvertido= resultado.replace(".", ",");
 
-            print("Área do círculo: ", resultadoConvertido, medida, "²");
+            print("Área do círculo: ", resultadoConvertido, medida, "2");
         
         elif x == 2:
             print("Digite o valor abaixo:");
@@ -202,16 +201,16 @@ while(menu):
             resultado = str(calculo);
             resultadoConvertido = resultado.replace(".", ",");
 
-            print("Área do círculo: ", resultadoConvertido, medida, "²");
+            print("Área do círculo: ", resultadoConvertido, medida, "2");
         else:
             print("Inválido");
             print("");
     
     elif x == 5:
-        print("Área do retângulo: ", resultadoConvertido, medida, "²");
+        print("Área do retângulo: ", resultadoConvertido);
 
     elif x == 6:
-        print("Área do losango: ", resultadoConvertido, medida, "²");
+        print("Área do losango: ", resultadoConvertido);
 
 
     elif x == 7:
@@ -272,27 +271,21 @@ while(menu):
             print("Inválido");
     else:
         print("Menu inválido"); 
-    print("");
-
 
     retorno = True;
-
     while(retorno):
         print("");
         print("Deseja realizar outra operação?");
-        print("S");
-        print("N");
+        print("1 - Sim.");
+        print("2 - Não.");
         print("");
-
-        resposta = input("Digite uma das opções dadas: ");
-        if resposta == "S" or "s":
-            menu = True;
+        resposta1 = int(input("Digite uma das opções dadas: "));
+        if resposta1 == 1:
             retorno = False;
-        elif resposta == "N" or "n":
-            menu = False;
+        elif resposta1 == 2:
             retorno = False;
+            quit()
         else:
             print("Inválido! ");
             print("");
-
             retorno = True;
