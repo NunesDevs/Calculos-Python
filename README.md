@@ -1,3 +1,3 @@
-# Projeto calculo de áreas em python.
-## Programa simples que calcula área com a entrada dos determinados valores.
+# Projeto calculo de áreas em Python.
+## Programa simples que calcula a área com a entrada dos determinados valores.
 
