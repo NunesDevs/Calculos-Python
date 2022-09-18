@@ -2,20 +2,8 @@ from curses.ascii import isalpha, isdigit
 from unicodedata import digit
 import const
 
-while(True):
-    print("");
-    print("Escolha entre: ");
-    print("1 - cm");
-    print("2 - m");
-    print("");
-    padrao = int(input("Opção: "));
-    if padrao == 1:
-        medida = "cm";
-    elif padrao == 2:
-        medida = "m";
-    else:
-
-        print("Inválido! ");
+#-----------------------------------
+def menu():
     print("");
     print("##############################");
     print("# Escolha o tipo de calculo: #");
@@ -28,7 +16,46 @@ while(True):
     print("# 7 - Circunferência.        #");
     print("##############################");
     print("");
+
+def _medida():
+    print("");
+    print("Escolha entre: ");
+    print("1 - cm");
+    print("2 - m");
+    print("");
+
+def _filtro(valor):
+    a = valor;
+    char =set(const.DICI);
+    res = ''.join(filter(lambda x: x not in char, a));
+    valor = res;
     
+    if "." in valor:
+            valor = float(valor);
+    else:
+        valor = valor.replace(",", ".");
+        valor = float(valor);
+    return valor
+
+def resultado(calculo):
+    calculo = str(calculo);
+    calculo = calculo.replace(".", ",");
+    return calculo
+#------------------------------------
+#------------------------------------
+programa = True
+while(programa): 
+    
+    _medida()
+    padrao = int(input("Opção: "));
+    if padrao == 1:
+        medida = "cm";
+    elif padrao == 2:
+        medida = "m";
+    else:
+        print("Inválido! ");
+    
+    menu()
     x = int(input("Digite a opção: "));
     print("");
     
@@ -37,38 +64,18 @@ while(True):
         print("");
         print("Digite os valores abaixo: ");
         print("")
+        
+        valor = str(input("Valor da base: "));
+        valorBase = _filtro(valor)
 
-        valorBase = str(input("Valor da base: "));
-        
-        a = valorBase;
-        char =set(const.DICI);
-        res = ''.join(filter(lambda x: x not in char, a));
-        valorBase = res;
-        
-        if "." in valorBase:
-            valorFloat_B = float(valorBase);
-        else:
-            valorRep_B = valorBase.replace(",", ".");
-            valorFloat_B = float(valorRep_B);
-        
-        valorAltura = str(input("Valor da altura: "));
+        valor = str(input("Valor da altura: "));
         print("");
-        
-        a = valorAltura;
-        char = set(const.DICI);
-        res = ''.join(filter(lambda x: x not in char, a));
-        valorAltura = res;
-        
-        if "." in valorAltura:
-            valorFloat_A = float(valorRep_A);
-        else:
-            valorRep_A = valorAltura.replace(",", ".");
-            valorFloat_A = float(valorRep_A);
-        
-        calculo = valorFloat_B * valorFloat_A / 2;
-        resultado = str(calculo);
-        resultadoConvertido = resultado.replace(".", ",");
-        print("Área resultante: ", resultadoConvertido, medida,"2");
+        valorAltura = _filtro(valor) 
+        #------------------------------------
+        calculo = valorBase * valorAltura / 2;
+        #------------------------------------
+        resposta = resultado(calculo)
+        print("Área resultante: ", resposta, medida,"2");
     
     elif x == 2:
         print("Área do quadrado");
@@ -76,24 +83,14 @@ while(True):
         print("Digite o valor abaixo:");
         print("");
 
-        ladoQua = str(input("Valor do lado: "));
+        valor = str(input("Valor do lado: "));
         print("");
-        
-        a = ladoQua;
-        char =set(const.DICI);
-        res = ''.join(filter(lambda x: x not in char, a));
-        ladoQua = res;
-        
-        if "." in ladoQua:
-            valorFloat_LQ = float(ladoQua);
-        else:
-            valorRep_LQ = ladoQua.replace(",", ".");
-            valorFloat_LQ = float(valorRep_LQ);
-        
-        calculo = valorFloat_LQ ** 2;
-        resultado = str(calculo);
-        resultadoConvertido = resultado.replace(".", ",");
-        print("Área resultante: ", resultadoConvertido, medida,"2");
+        ladoQua = _filtro(valor)
+        #------------------------------------
+        calculo = ladoQua ** 2;
+        #------------------------------------
+        resposta = resultado(calculo)
+        print("Área resultante: ", resposta, medida,"2");
 
     elif x == 3:
         print("Área Trapézio");
@@ -101,50 +98,20 @@ while(True):
         print("Digite os valores abaixo:");
         print("");
 
-        baseMenor = str(input("Valor da base menor: "));
+        valor = str(input("Valor da base menor: "));
+        baseMenor = _filtro(valor)
         
-        a = baseMenor;
-        char =set(const.DICI);
-        res = ''.join(filter(lambda x: x not in char, a));
-        baseMenor = res;
+        valor = str(input("Valor da base maior: "));
+        baseMaior = _filtro(valor)
         
-        if "." in baseMenor:
-            valorFloat_Bm = float(baseMenor);
-        else:
-            valorRep_Bm = baseMenor.replace(",", ".");
-            valorFloat_Bm = float(valorRep_Bm);
-        
-        baseMaior = str(input("Valor da base maior: "));
-        
-        a = baseMaior;
-        char =set(const.DICI);
-        res = ''.join(filter(lambda x: x not in char, a));
-        baseMaior = res;
-        
-        if "." in baseMaior:
-            valorFloat_BM = float(baseMaior);
-        else:
-            valorRep_BM = baseMaior.replace(",", ".");
-            valorFloat_BM = float(valorRep_BM);
-        
-        alturaTra = str(input("Valor da altura: "));
+        valor = str(input("Valor da altura: "));
         print("");
-        
-        a = alturaTra;
-        char =set(const.DICI);
-        res = ''.join(filter(lambda x: x not in char, a));
-        alturaTra = res;
-        
-        if "." in alturaTra:
-            valorFloat_At = float(alturaTra);
-        else:
-            valorRep_At = alturaTra.replace(",", ".");
-            valorFloat_At = float(valorRep_At);
-        
-        calculo = (valorFloat_Bm + valorFloat_BM) * valorFloat_At / 2;
-        resultado = str(calculo);
-        resultadoConvertido = resultado.replace(".",",");
-        print("Área resultante: ", resultadoConvertido, medida,"2");
+        alturaTra = _filtro(valor)
+        #------------------------------------
+        calculo = (baseMenor + baseMaior) * alturaTra / 2;
+        #------------------------------------
+        resposta = resultado(calculo)
+        print("Área resultante: ", resposta, medida,"2");
 
     elif x == 4:
         print("Área do círculo");
@@ -161,56 +128,34 @@ while(True):
             print("Digite o valor abaixo:");
             print("");
 
-            diametro = str(input("Valor do diâmetro: "));
-            
-            a = diametro;
-            char = set(const.DICI);
-            res = ''.join(filter(lambda x: x not in char, a));
-            diametro = res
-
-            if "." in diametro:
-                ValorDiametro = float(diametro);
-            else:
-                ValorRep_D = diametro.replace(",", ".");
-                ValorDiametro = float(ValorRep_D);
-
-            calculo = (ValorDiametro / 2) ** 2 * const.PI;
-            resultado = str(calculo);
-            resultadoConvertido= resultado.replace(".", ",");
-
-            print("Área do círculo: ", resultadoConvertido, medida, "2");
+            valor = str(input("Valor do diâmetro: "));
+            diametro = _filtro(valor)
+            #------------------------------------
+            calculo = (diametro / 2) ** 2 * const.PI;
+            #------------------------------------
+            resposta = resultado(calculo)
+            print("Área do círculo: ", resposta1, medida, "2");
         
         elif x == 2:
             print("Digite o valor abaixo:");
             print("");
 
-            raio = str(input("Valor do raio: "));
-            
-            a = raio;
-            char = set(const.DICI);
-            res = ''.join(filter(lambda x: x not in char, a));
-            raio = res;
-
-            if "." in raio:
-                ValorRaio = float(raio);
-            else:
-                ValorRep_R = raio.replace(",", ".");
-                ValorRaio = float(ValorRep_R);
-
-            calculo = const.PI * ValorRaio ** 2;
-            resultado = str(calculo);
-            resultadoConvertido = resultado.replace(".", ",");
-
-            print("Área do círculo: ", resultadoConvertido, medida, "2");
+            valor = str(input("Valor do raio: "));
+            raio = _filtro(valor)
+            #------------------------------------
+            calculo = const.PI * raio ** 2;
+            #------------------------------------
+            resposta = resultado(calculo)
+            print("Área do círculo: ", resposta, medida, "2");
         else:
             print("Inválido");
             print("");
     
     elif x == 5:
-        print("Área do retângulo: ", resultadoConvertido);
+        print("Área do retângulo: ", resposta);
 
     elif x == 6:
-        print("Área do losango: ", resultadoConvertido);
+        print("Área do losango: ", resposta);
 
 
     elif x == 7:
@@ -228,45 +173,25 @@ while(True):
             print("Digite o valor abaixo:");
             print("");
 
-            diametro = str(input("Valor do diâmetro: "));
-            
-            a = diametro;
-            char = set(const.DICI);
-            res = ''.join(filter(lambda x: x not in char, a));
-            diametro = a;
-
-            if "." in diametro:
-                ValorDiametro = float(diametro);
-            else:
-                ValorRep_D = diametro.replace(",", ".");
-                ValorDiametro = float(ValorRep_D);
-
-            calculo = const.PI * ValorDiametro;
-            resultado = str(calculo);
-            resultadoConvertido = resultado.replace(".", ",");
-            print("Circunferência: ", resultadoConvertido, medida);
+            valor = str(input("Valor do diâmetro: "));
+            diametro = _filtro(valor)
+            #------------------------------------
+            calculo = const.PI * diametro;
+            #------------------------------------
+            resposta = resultado(calculo);
+            print("Circunferência: ", resposta, medida);
         
         elif x == 2:
             print("Digite o valor abaixo:");
             print("");
 
-            raio = str(input("Valor do raio: "));
-            
-            a = raio;
-            char = set(const.DICI);
-            res = ''.join(filter(lambda x: x not in char, a));
-            raio = a;
-
-            if "." in raio:
-                ValorRaio = float(raio);
-            else:
-                ValorRep_R = raio.replace(",", ".");
-                ValorRaio = float(ValorRep_R);
-
-            calculo = 2 * const.PI * ValorRaio;
-            resultado = str(calculo);
-            resultadoConvertido = resultado.replace(".",",");
-            print("Circunferência: ", resultadoConvertido, medida);
+            valor = str(input("Valor do raio: "));
+            raio = _filtro(valor)
+            #------------------------------------
+            calculo = 2 * const.PI * raio;
+            #------------------------------------
+            resposta = resultado(calculo);
+            print("Circunferência: ", resposta, medida);
         else:
             print("Inválido");
     else:
@@ -275,16 +200,15 @@ while(True):
     retorno = True;
     while(retorno):
         print("");
-        print("Deseja realizar outra operação?");
-        print("1 - Sim.");
-        print("2 - Não.");
+        print("Deseja realizar outra operação?[S/N]");
         print("");
-        resposta1 = int(input("Digite uma das opções dadas: "));
-        if resposta1 == 1:
+        resposta1 = (input("Digite uma das opções dadas: "));
+        if resposta1 == "S" or resposta1 == "s":
+            programa = True
             retorno = False;
-        elif resposta1 == 2:
+        elif resposta1 == "N" or resposta1 == "n":
+            programa = False
             retorno = False;
-            quit()
         else:
             print("Inválido! ");
             print("");
