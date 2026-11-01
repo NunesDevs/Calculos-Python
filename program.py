@@ -1,5 +1,3 @@
-from curses.ascii import isalpha, isdigit
-from unicodedata import digit
 import const
 
 #-----------------------------------
@@ -134,7 +132,7 @@ while(programa):
             calculo = (diametro / 2) ** 2 * const.PI;
             #------------------------------------
             resposta = resultado(calculo)
-            print("Área do círculo: ", resposta1, medida, "2");
+            print("Área do círculo: ", resposta, medida, "2");
         
         elif x == 2:
             print("Digite o valor abaixo:");
