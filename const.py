@@ -1,13 +1,6 @@
-from re import U
+"""Constante histórica de PI preservada com precisão da biblioteca padrão."""
+from math import pi
 
-
-PI = 3.1415
-DICI = [
-'a','b','c','d',
-'e','f','g','h',
-'i','j','k','l',
-'m','n','o','p',
-'q','r','s','t',
-'u','v','w','x',
-'y','z'
-];
+PI = pi
+# Compatibilidade com versões anteriores; o parser atual não remove letras.
+DICI = list("abcdefghijklmnopqrstuvwxyz")

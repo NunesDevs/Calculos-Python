@@ -1,213 +1,82 @@
-import const
+"""Menu de geometria; importar o módulo não inicia o programa."""
+from geometry import circle_area, circumference, dimension, rectangle, rhombus, square, trapezoid, triangle
 
-#-----------------------------------
+
 def menu():
-    print("");
-    print("##############################");
-    print("# Escolha o tipo de calculo: #");
-    print("# 1 - Área do triângulo.     #");
-    print("# 2 - Área do quadrado.      #");
-    print("# 3 - Área do trapézio.      #");
-    print("# 4 - Área do círculo.       #");
-    print("# 5 - Área retângulo.        #");
-    print("# 6 - Área losango.          #");
-    print("# 7 - Circunferência.        #");
-    print("##############################");
-    print("");
-
-def _medida():
-    print("");
-    print("Escolha entre: ");
-    print("1 - cm");
-    print("2 - m");
-    print("");
-
-def _filtro(valor):
-    a = valor;
-    char =set(const.DICI);
-    res = ''.join(filter(lambda x: x not in char, a));
-    valor = res;
-    
-    if "." in valor:
-            valor = float(valor);
-    else:
-        valor = valor.replace(",", ".");
-        valor = float(valor);
-    return valor
-
-def resultado(calculo):
-    calculo = str(calculo);
-    calculo = calculo.replace(".", ",");
-    return calculo
-#------------------------------------
-#------------------------------------
-programa = True
-while(programa): 
-    
-    _medida()
-    padrao = int(input("Opção: "));
-    if padrao == 1:
-        medida = "cm";
-    elif padrao == 2:
-        medida = "m";
-    else:
-        print("Inválido! ");
-    
-    menu()
-    x = int(input("Digite a opção: "));
-    print("");
-    
-    if x == 1:
-        print("Área do triângulo");
-        print("");
-        print("Digite os valores abaixo: ");
-        print("")
-        
-        valor = str(input("Valor da base: "));
-        valorBase = _filtro(valor)
-
-        valor = str(input("Valor da altura: "));
-        print("");
-        valorAltura = _filtro(valor) 
-        #------------------------------------
-        calculo = valorBase * valorAltura / 2;
-        #------------------------------------
-        resposta = resultado(calculo)
-        print("Área resultante: ", resposta, medida,"2");
-    
-    elif x == 2:
-        print("Área do quadrado");
-        print("");
-        print("Digite o valor abaixo:");
-        print("");
-
-        valor = str(input("Valor do lado: "));
-        print("");
-        ladoQua = _filtro(valor)
-        #------------------------------------
-        calculo = ladoQua ** 2;
-        #------------------------------------
-        resposta = resultado(calculo)
-        print("Área resultante: ", resposta, medida,"2");
-
-    elif x == 3:
-        print("Área Trapézio");
-        print("");
-        print("Digite os valores abaixo:");
-        print("");
-
-        valor = str(input("Valor da base menor: "));
-        baseMenor = _filtro(valor)
-        
-        valor = str(input("Valor da base maior: "));
-        baseMaior = _filtro(valor)
-        
-        valor = str(input("Valor da altura: "));
-        print("");
-        alturaTra = _filtro(valor)
-        #------------------------------------
-        calculo = (baseMenor + baseMaior) * alturaTra / 2;
-        #------------------------------------
-        resposta = resultado(calculo)
-        print("Área resultante: ", resposta, medida,"2");
-
-    elif x == 4:
-        print("Área do círculo");
-        print("");
-        print("Escolha o método: ");
-        print("1 - Utilizando diâmetro.");
-        print("2 - Utilizando raio.");
-        print("");
-        
-        x = int(input("Digite a opção: "));
-        print("");
-        
-        if x == 1:
-            print("Digite o valor abaixo:");
-            print("");
-
-            valor = str(input("Valor do diâmetro: "));
-            diametro = _filtro(valor)
-            #------------------------------------
-            calculo = (diametro / 2) ** 2 * const.PI;
-            #------------------------------------
-            resposta = resultado(calculo)
-            print("Área do círculo: ", resposta, medida, "2");
-        
-        elif x == 2:
-            print("Digite o valor abaixo:");
-            print("");
-
-            valor = str(input("Valor do raio: "));
-            raio = _filtro(valor)
-            #------------------------------------
-            calculo = const.PI * raio ** 2;
-            #------------------------------------
-            resposta = resultado(calculo)
-            print("Área do círculo: ", resposta, medida, "2");
-        else:
-            print("Inválido");
-            print("");
-    
-    elif x == 5:
-        print("Área do retângulo: ", resposta);
-
-    elif x == 6:
-        print("Área do losango: ", resposta);
+    print('\nEscolha o tipo de cálculo:')
+    for key, text in [('1', 'Área do triângulo'), ('2', 'Área do quadrado'), ('3', 'Área do trapézio'), ('4', 'Área do círculo'), ('5', 'Área do retângulo'), ('6', 'Área do losango'), ('7', 'Circunferência'), ('0', 'Sair')]:
+        print(key + ' - ' + text)
 
 
-    elif x == 7:
-        print("Circunferência");
-        print("");
-        print("Escolha o metodo: ");
-        print("1 - Utilizando diâmetro.");
-        print("2 - Utilizando raio.");
-        print("");
-        
-        x = int(input("Digite a opção: "));
-        print("");
-        
-        if x == 1:
-            print("Digite o valor abaixo:");
-            print("");
+def choice(prompt, options):
+    while True:
+        answer = input(prompt).strip().casefold()
+        if answer in options:
+            return answer
+        print('Opção inválida. Tente novamente.')
 
-            valor = str(input("Valor do diâmetro: "));
-            diametro = _filtro(valor)
-            #------------------------------------
-            calculo = const.PI * diametro;
-            #------------------------------------
-            resposta = resultado(calculo);
-            print("Circunferência: ", resposta, medida);
-        
-        elif x == 2:
-            print("Digite o valor abaixo:");
-            print("");
 
-            valor = str(input("Valor do raio: "));
-            raio = _filtro(valor)
-            #------------------------------------
-            calculo = 2 * const.PI * raio;
-            #------------------------------------
-            resposta = resultado(calculo);
-            print("Circunferência: ", resposta, medida);
-        else:
-            print("Inválido");
-    else:
-        print("Menu inválido"); 
+def read_dimension(prompt, unit):
+    while True:
+        try:
+            return dimension(input(prompt), unit)
+        except ValueError as error:
+            print(error)
 
-    retorno = True;
-    while(retorno):
-        print("");
-        print("Deseja realizar outra operação?[S/N]");
-        print("");
-        resposta1 = (input("Digite uma das opções dadas: "));
-        if resposta1 == "S" or resposta1 == "s":
-            programa = True
-            retorno = False;
-        elif resposta1 == "N" or resposta1 == "n":
-            programa = False
-            retorno = False;
-        else:
-            print("Inválido! ");
-            print("");
-            retorno = True;
+
+def _filtro(value):
+    return dimension(value)
+
+
+def resultado(value):
+    text = format(value, '.12g')
+    if '.' not in text and 'e' not in text:
+        text += '.0'
+    return text.replace('.', ',')
+
+
+def calculate(option, unit):
+    if option not in ('1', '2', '3', '4', '5', '6', '7'):
+        raise ValueError('Tipo de cálculo inválido')
+    read = lambda prompt: read_dimension(prompt, unit)
+    if option == '1':
+        return triangle(read('Valor da base: '), read('Valor da altura: '))
+    if option == '2':
+        return square(read('Valor do lado: '))
+    if option == '3':
+        return trapezoid(read('Valor da base menor: '), read('Valor da base maior: '), read('Valor da altura: '))
+    if option == '5':
+        return rectangle(read('Valor da base: '), read('Valor da altura: '))
+    if option == '6':
+        return rhombus(read('Valor da diagonal maior: '), read('Valor da diagonal menor: '))
+    method = choice('1 - Utilizando diâmetro; 2 - Utilizando raio: ', ('1', '2'))
+    value = read('Valor do diâmetro: ' if method == '1' else 'Valor do raio: ')
+    arguments = {'diameter': value} if method == '1' else {'radius': value}
+    return circle_area(**arguments) if option == '4' else circumference(**arguments)
+
+
+def main():
+    try:
+        while True:
+            print('\nUnidade: 1 - cm; 2 - m; 0 - Sair')
+            selected = choice('Opção: ', ('0', '1', '2'))
+            if selected == '0':
+                return
+            unit = 'cm' if selected == '1' else 'm'
+            menu()
+            option = choice('Digite a opção: ', ('0', '1', '2', '3', '4', '5', '6', '7'))
+            if option == '0':
+                return
+            try:
+                value = calculate(option, unit)
+                print(('Circunferência: ' if option == '7' else 'Área resultante: ') + resultado(value) + ' ' + unit + ('' if option == '7' else '²'))
+            except ValueError as error:
+                print(error)
+            if choice('Deseja realizar outra operação? [S/N]: ', ('s', 'n')) == 'n':
+                return
+    except (EOFError, KeyboardInterrupt):
+        print('\nEncerrando...')
+
+
+if __name__ == '__main__':
+    main()
